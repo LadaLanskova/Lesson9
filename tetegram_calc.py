@@ -9,7 +9,7 @@ def print_menu(msg: telebot.types.Message):
 
 @bot.message_handler(commands=['start'])
 def print_menu(msg: telebot.types.Message):
-    bot.send_message(chat_id=msg.from_user.id, text=f'Оздоровительный бот - калькулятор приветсвует Вас, {msg.from_user.full_name}! \U0001F91D')
+    bot.send_message(chat_id=msg.from_user.id, text=f'Бот - калькулятор приветсвует Вас, {msg.from_user.full_name}! \U0001F91D')
     bot.send_message(chat_id=msg.from_user.id, text='Выберите, с какими числами будем работать? \n 1. Целые числа \n 2. Дробные числа')
     bot.send_message(chat_id=msg.from_user.id, text='Введите 1 или 2:')
     bot.register_next_step_handler(msg, take_type_numbers)
@@ -83,12 +83,10 @@ def take_numbers_i(msg: telebot.types.Message):
         if division(msg):
             res = calcul(int(tmp[0]), int(tmp[1]), type_of_operation)
             bot.send_message(chat_id=msg.from_user.id, text=f'{print_operation} {res}')
-            bot.send_message(chat_id=msg.from_user.id, text='Леша, выздоравливай!')
             bot.send_message(chat_id=msg.from_user.id, text='Для продолжения введите любой символ')
             bot.register_next_step_handler(msg, take_message)
         else:
             bot.send_message(chat_id=msg.from_user.id, text=f'Деление на 0 не поддерживается, вызывайте помощь \U0001F691')
-            bot.send_message(chat_id=msg.from_user.id, text='Леша, выздоравливайте!')
             bot.send_message(chat_id=msg.from_user.id, text='Для продолжения введите любой символ')
             bot.register_next_step_handler(msg, take_message)
     else:
@@ -101,12 +99,9 @@ def take_numbers_f(msg: telebot.types.Message):
     if len(tmp) == 2:
         tmp1 = check(tmp[0])
         tmp2 = check(tmp[1])
-        print(tmp1)
-        print(tmp2)
         if tmp1 and tmp2:
             res = calcul(tmp1, tmp2, type_of_operation)
             bot.send_message(chat_id=msg.from_user.id, text=f'{print_operation} {res}')
-            bot.send_message(chat_id=msg.from_user.id, text='Леша, выздоравливай!')
             bot.send_message(chat_id=msg.from_user.id, text=f'Для продолжения введите любой символ')
             bot.register_next_step_handler(msg, take_message)
         else:
